@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio-2</title>
+</head>
+<body>
+
+    <h1>INSTRUCTORES</h1>
+
+<script>
+     class Instructor {
+        #nombre;
+        #linea;
+        #jornada;
+        
+        constructor (){
+            this.#nombre = '';
+            this.#linea = '';
+            this.#jornada = '';
+
+        }
+
+        programaFormacion(){
+        switch (this.#linea) {
+            case `software`:
+                return (` El instructor pertenece a la linea Análisis y desarrollo de software`);
+                break;
+            case `hardware`:
+                return (`El instructor pertenece a la linea Administración de redes`);
+                break;
+            default: 'otro tipo de programa'
+                return `No se tiene registro calificado 
+                        para esas líneas tecnológicas`
+                break;
+            }
+        }
+
+        set setNombre(value) {
+            this.#nombre = value;
+        }
+
+        get getNombre() {
+            return this.#nombre;
+        }
+
+        set setLinea(value) {
+            this.#linea = value;
+        }
+
+        get getLinea() {
+            return this.#linea;
+        }
+
+        set setJornada(value) {
+            this.#jornada = value;
+        }
+
+        get getJornada() {
+            return this.#jornada;
+        }
+
+
+    };
+
+    Reflect.preventExtensions(Instructor);
+
+    const instructor1 = new Instructor();
+
+    Reflect.preventExtensions(instructor1);
+
+    console.log({instructor1});
+
+    instructor1.setNombre = 'David';
+    instructor1.setLinea = 'hardware';
+    instructor1.setJornada = 'tarde';
+
+    console.log(instructor1.programaFormacion());
+
+    class InstructorPlanta extends Instructor{
+        #fechaVinculacion;
+
+        informacionMeses(){
+            let fecha1 = new Date();
+            let fecha2 = new Date(this.#fechaVinculacion);
+
+            let miliSegundos= 24 * 60 * 60 * 1000;
+
+            let miliSegundosTranscurridos= Math.abs(fecha1.getTime()- fecha2.getTime());
+            let diasTranscurridos = Math.round(miliSegundosTranscurridos/miliSegundos);
+            return Math.round(diasTranscurridos/30) ;
+        }
+
+        constructor(){
+            super();
+            this.#fechaVinculacion = '';
+        }
+
+        set setFechaVinculacion(value) {
+            this.#fechaVinculacion = value;
+        }
+
+        get getFechaVinculacion() {
+            return this.#fechaVinculacion;
+        }
+
+    }
+    
+    const instructor2 = new InstructorPlanta;
+
+        instructor2.setNombre = 'julian';
+        instructor2.setLinea = 'hardware';
+        instructor2.setJornada = 'mañana';
+        instructor2.setFechaVinculacion = '2023-08-14';
+
+
+    console.log({instructor2});
+
+    console.log(`El instructor lleva ${instructor2.informacionMeses()} meses trabajando`);
+
+        
+    
+        
+
+</script>
+</body>
+</html>

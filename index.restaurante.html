@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio-3</title>
+</head>
+<body>
+
+    <h1>RESTAURANTE</h1>
+    
+
+<script>
+    class Restaurante {
+        #plato;
+        #cantidad;
+        #precio;
+        
+        constructor (){
+            this.#plato = '';
+            this.#cantidad = '';
+            this.#precio = 0 ;
+
+        }
+
+        descuentoPedido(){
+        const precioTotal = this.#cantidad * this.#precio;
+        if (precioTotal >= 50000) {
+            const descuento = 10
+            const descuentoPrecioTotal = (descuento/100)*precioTotal
+            const cuentaFinal = precioTotal - descuentoPrecioTotal 
+            console.log(`El valor de su compra es de ${precioTotal} `+
+            `pero se le aplica un descuento de ${descuentoPrecioTotal} `+
+            `por lo que su cuenta final es de ${cuentaFinal}`)
+        } else {
+            console.log(`El valor de su cuenta es de ${precioTotal} \n`+
+            'Para aplicar al descuento el valor total debe ser mayor a 50K')
+            }
+        }
+
+        set setPlato(value) {
+            this.#plato = value;
+        }
+
+        get getPlato() {
+            return this.#plato;
+        }
+
+        set setCantidad(value) {
+            this.#cantidad = value;
+        }
+
+        get getCantidad() {
+            return this.#cantidad;
+        }
+
+        set setPrecio(value) {
+            this.#precio = value;
+        }
+
+        get getPrecio() {
+            return this.#precio;
+        }
+
+
+    };
+
+    Reflect.preventExtensions(Restaurante);
+
+    const plato1 = new Restaurante();
+
+    Reflect.preventExtensions(plato1);
+
+    console.log({plato1});
+
+    plato1.setPlato = 'Arroz con pollo';
+    plato1.setCantidad = '2';
+    plato1.setPrecio = 25000;
+
+    plato1.descuentoPedido();
+
+    class RestauranteDomicilio extends Restaurante{
+        #tiempoEntrega;
+        #valorDomicilio;
+
+        constructor(){
+            super();
+            this.#tiempoEntrega = '';
+            this.#valorDomicilio = 0;
+        }
+
+        set setTiempoEntrega(value) {
+            this.#tiempoEntrega = value;
+        }
+
+        get getTiempoEntrega() {
+            return this.#tiempoEntrega;
+        }
+
+        set setValorDomicilio(value) {
+            this.#valorDomicilio = value;
+        }
+
+        get getValorDomicilio() {
+            return this.#valorDomicilio;
+        }
+ 
+        descuentoPedido (){
+        const precioTotal1 = this.getCantidad * this.getPrecio + this.#valorDomicilio;
+        if (precioTotal1 >= 50000) {
+            const descuento = 10
+            const descuentoPrecioTotal = (descuento/100)*precioTotal1
+            const cuentaFinal = precioTotal1 - descuentoPrecioTotal 
+            const masDomicilio = cuentaFinal
+            console.log(`El valor de su compra es de ${masDomicilio} `+
+            `porque se le aplica un descuento de ${descuentoPrecioTotal} `+
+            `y se le suman ${this.#valorDomicilio} del domicilio`)
+        } else {
+            console.log(`El valor de su cuenta es de ${precioTotal1} \n porque incluye `+
+            `${this.#valorDomicilio} del domicilio \n Para aplicar al `+
+            `descuento el valor total debe ser mayor a 50K`)
+        }
+    } 
+
+    }
+    
+    const plato2 = new RestauranteDomicilio;
+
+        console.log({plato2});
+
+        plato2.setPlato = 'hamburguesa';
+        plato2.setCantidad = '3';
+        plato2.setPrecio = 10000;
+        plato2.setTiempoEntrega = '1hr';
+        plato2.setValorDomicilio = 2000 ;
+
+    plato2.descuentoPedido();
+
+
+
+
+</script>
+</body>
+</html>

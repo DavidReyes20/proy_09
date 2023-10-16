@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio-1</title>
+</head>
+<body>
+    
+    <h1>AUTOMOVILES</h1>
+
+<script>
+
+    class Carros {
+        #marca;
+        #linea;
+        #modelo;
+        #cilindraje;
+        #precio;
+        
+        constructor (){
+            this.#marca = '';
+            this.#linea = '';
+            this.#modelo = '';
+            this.#cilindraje = '';
+            this.#precio = 0;
+
+        }
+
+        nivelGasolina(){
+            console.log((`El nivel de gasolina es de `) + 
+            (Math.floor(Math.random() * 101)) + (`%`));
+        };
+
+        tecnoMecanica(){
+            let d = new Date();
+            let n = d.getFullYear();
+
+            if (n-this.modelo < 5) {
+                console.log(`El carro no necesita tecnomecanica`)
+            } else { console.log(`El carro debe de ir a tecnomecanica`)
+
+            }
+        };
+
+        set setMarca(value) {
+            this.#marca = value;
+        }
+
+        get getMarca() {
+            return this.#marca;
+        }
+
+        set setLinea(value) {
+            this.#linea = value;
+        }
+
+        get getLinea() {
+            return this.#linea;
+        }
+
+        set setModelo(value) {
+            this.#modelo = value;
+        }
+
+        get getModelo() {
+            return this.#modelo;
+        }
+
+        set setCilindraje(value) {
+            this.#cilindraje = value;
+        }
+
+        get getCilindraje() {
+            return this.#cilindraje;
+        }
+
+        set setPrecio(value) {
+            this.#precio = value;
+        }
+
+        get getPrecio() {
+            return this.#precio;
+        }
+
+    };
+
+    Reflect.preventExtensions(Carros);
+
+    const carro1 = new Carros();
+
+    Reflect.preventExtensions(carro1);
+
+    console.log({carro1});
+
+    carro1.setMarca = 'Mazda';
+    carro1.setLinea = '3';
+    carro1.setModelo = '2010';
+    carro1.setCilindraje = '1500cc';
+    carro1.setPrecio = 70000000
+
+    carro1.nivelGasolina();
+    carro1.tecnoMecanica();
+
+    class Sedan extends Carros{
+        #numeroPasajeros; 
+        #tipoCaja;
+
+        constructor(){
+            super();
+            this.#numeroPasajeros = 0;
+            this.#tipoCaja = '';
+        }
+
+        set setNumeroPasajeros(value) {
+            this.#numeroPasajeros = value;
+        }
+
+        get getNumeroPasajeros() {
+            return this.#numeroPasajeros;
+        }
+
+        set setTipoCaja(value) {
+            this.#tipoCaja = value;
+        }
+
+        get getTipoCaja() {
+            return this.#tipoCaja;
+        }
+
+        numeroCinturonesSeguridad (){
+            return`El carro ${this.getMarca} tiene ${this.getNumeroPasajeros} cinturones de seguridad`;
+        }
+
+    }
+    
+    const carro2 = new Sedan;
+
+        console.log({carro2});
+
+        carro2.setMarca = 'renauld';
+        carro2.setLinea = 'kwid';
+        carro2.setModelo = '2020';
+        carro2.setCilindraje = '1500cc';
+        carro2.setPrecio = 85000000
+        carro2.setNumeroPasajeros = 4
+        carro2.setTipoCaja = 'manual';
+
+        console.log(carro2.numeroCinturonesSeguridad());
+
+</script>
+</body>
+</html>
